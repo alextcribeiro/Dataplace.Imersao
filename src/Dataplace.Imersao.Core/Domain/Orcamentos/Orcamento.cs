@@ -37,6 +37,7 @@ namespace Dataplace.Imersao.Core.Domain.Orcamentos
         public OrcamentoValidade Validade { get; private set; }
         public OrcamentoTabelaPreco TabelaPreco { get; private set; }
         public DateTime? DtFechamento { get; private set; }
+        public DateTime? DtCancelamento { get; private set; }
         public OrcamentoVendedor Vendedor { get; private set; }
         public string Usuario { get; private set; }
         public OrcamentoStatusEnum Situacao { get; private set; }
@@ -55,10 +56,19 @@ namespace Dataplace.Imersao.Core.Domain.Orcamentos
         public void ReabrirOrcamento()
         {
             if (Situacao == OrcamentoStatusEnum.Aberto)
-                throw new DomainException("Orçamento já está fechado!");
+                throw new DomainException("Orçamento já está ABERTO!");
 
             Situacao = OrcamentoStatusEnum.Aberto;
             DtFechamento = null;
+        }
+
+        public void CancerlarOrcamento()
+        {
+            if (Situacao == OrcamentoStatusEnum.Fechado)
+                throw new DomainException("Orçamento já fechado, não será possivel cancelar");
+
+            Situacao = OrcamentoStatusEnum.cancelado;
+            DtCancelamento = DateTime.Now.Date;
         }
 
         public void DefinirValidade(int diasValidade)
@@ -79,6 +89,19 @@ namespace Dataplace.Imersao.Core.Domain.Orcamentos
             if (string.IsNullOrEmpty(CdFilial))
                 Validations.Add("Código da filial é requirido!");
 
+            if (string.IsNullOrEmpty(Usuario))
+                Validations.Add("Usuário é requirido!");
+
+            if (string.IsNullOrEmpty(Vendedor.Codigo))
+                Validations.Add("Cod Vendedor é requirido!");
+
+            if (string.IsNullOrEmpty(Cliente.Codigo))
+                Validations.Add("Cliente é requirido!");
+
+            if (string.IsNullOrEmpty(TabelaPreco.CdTabela))
+                Validations.Add("Tabela de preço é requirido!");
+
+            
             if (Validations.Count > 0)
                 return false;
             else
