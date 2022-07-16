@@ -37,7 +37,6 @@ namespace Dataplace.Imersao.Core.Domain.Orcamentos
         public OrcamentoValidade Validade { get; private set; }
         public OrcamentoTabelaPreco TabelaPreco { get; private set; }
         public DateTime? DtFechamento { get; private set; }
-        public DateTime? DtCancelamento { get; private set; }
         public OrcamentoVendedor Vendedor { get; private set; }
         public string Usuario { get; private set; }
         public OrcamentoStatusEnum Situacao { get; private set; }
@@ -68,7 +67,6 @@ namespace Dataplace.Imersao.Core.Domain.Orcamentos
                 throw new DomainException("Orçamento já fechado, não será possivel cancelar");
 
             Situacao = OrcamentoStatusEnum.cancelado;
-            DtCancelamento = DateTime.Now.Date;
         }
 
         public void DefinirValidade(int diasValidade)
@@ -93,7 +91,7 @@ namespace Dataplace.Imersao.Core.Domain.Orcamentos
                 Validations.Add("Usuário é requirido!");
 
             if (string.IsNullOrEmpty(Vendedor.Codigo))
-                Validations.Add("Cod Vendedor é requirido!");
+                Validations.Add("Codigo Vendedor é requirido!");
 
             if (string.IsNullOrEmpty(Cliente.Codigo))
                 Validations.Add("Cliente é requirido!");
