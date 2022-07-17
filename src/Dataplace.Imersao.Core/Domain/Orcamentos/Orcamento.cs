@@ -9,7 +9,7 @@ namespace Dataplace.Imersao.Core.Domain.Orcamentos
     public class Orcamento
     {
         private Orcamento(string cdEmpresa, string cdFilial, int numOrcamento, OrcamentoCliente cliente, 
-            string usuario, OrcamentoVendedor vendedor, OrcamentoTabelaPreco tabelaPreco)
+           UsuarioDoOrcamento usuario, OrcamentoVendedor vendedor, OrcamentoTabelaPreco tabelaPreco)
         {
 
             CdEmpresa = cdEmpresa;
@@ -38,10 +38,17 @@ namespace Dataplace.Imersao.Core.Domain.Orcamentos
         public OrcamentoTabelaPreco TabelaPreco { get; private set; }
         public DateTime? DtFechamento { get; private set; }
         public OrcamentoVendedor Vendedor { get; private set; }
-        public string Usuario { get; private set; }
+        public UsuarioDoOrcamento Usuario { get; private set;}
         public OrcamentoStatusEnum Situacao { get; private set; }
         public ICollection<OrcamentoItem> Itens { get; private set; }
 
+
+        public void AdicionarItens(OrcamentoItem item)
+        {
+           if (item == null) throw new Exception("O item é requerido");
+           
+            Itens.Add(item);
+        }
 
         public void FecharOrcamento()
         {
@@ -67,6 +74,7 @@ namespace Dataplace.Imersao.Core.Domain.Orcamentos
                 throw new DomainException("Orçamento já fechado, não será possivel cancelar");
 
             Situacao = OrcamentoStatusEnum.cancelado;
+            DtFechamento = null;
         }
 
         public void DefinirValidade(int diasValidade)
@@ -87,7 +95,7 @@ namespace Dataplace.Imersao.Core.Domain.Orcamentos
             if (string.IsNullOrEmpty(CdFilial))
                 Validations.Add("Código da filial é requirido!");
 
-            if (string.IsNullOrEmpty(Usuario))
+            if (string.IsNullOrEmpty(Usuario.Codigo))
                 Validations.Add("Usuário é requirido!");
 
             if (string.IsNullOrEmpty(Vendedor.Codigo))
@@ -112,11 +120,11 @@ namespace Dataplace.Imersao.Core.Domain.Orcamentos
         public static class Factory
         {
 
-            public static Orcamento Orcamento(string cdEmpresa, string cdFilial, int numOrcamento, OrcamentoCliente cliente , string usuario, OrcamentoVendedor vendedor, OrcamentoTabelaPreco tabelaPreco)
+            public static Orcamento Orcamento(string cdEmpresa, string cdFilial, int numOrcamento, OrcamentoCliente cliente , UsuarioDoOrcamento usuario, OrcamentoVendedor vendedor, OrcamentoTabelaPreco tabelaPreco)
             {
                 return new Orcamento(cdEmpresa, cdFilial, numOrcamento, cliente, usuario, vendedor, tabelaPreco);
             }
-            public static Orcamento OrcamentoRapido(string cdEmpresa, string cdFilial, int numOrcamento, string usuario, OrcamentoVendedor vendedor, OrcamentoTabelaPreco tabelaPreco)
+            public static Orcamento OrcamentoRapido(string cdEmpresa, string cdFilial, int numOrcamento, UsuarioDoOrcamento usuario, OrcamentoVendedor vendedor, OrcamentoTabelaPreco tabelaPreco)
             {
                 return new Orcamento(cdEmpresa, cdFilial, numOrcamento, null, usuario, vendedor, tabelaPreco);
             }

@@ -29,9 +29,7 @@ namespace Dataplace.Imersao.Core.Domain.Orcamentos.Enums
                 return OrcamentoStatusEnum.Fechado;
             else
                 return OrcamentoStatusEnum.Aberto;
-
-            if (value == "C")
-                return OrcamentoStatusEnum.cancelado;
+            
         }
     }
 }
