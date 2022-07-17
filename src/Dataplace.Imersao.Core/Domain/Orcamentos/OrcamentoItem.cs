@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace Dataplace.Imersao.Core.Domain.Orcamentos
 {
     public class OrcamentoItem
@@ -55,7 +56,27 @@ namespace Dataplace.Imersao.Core.Domain.Orcamentos
             Total = Quantidade * PrecoVenda;
         }
         #endregion
+
+        public List<string> Validations;
+
+        public bool IsValid()
+        
+        {
+            Validations = new List<string>();
+            
+            if (string.IsNullOrEmpty(CdEmpresa))
+                Validations.Add("Código da empresa é requirido!");
+
+            if (string.IsNullOrEmpty(CdFilial))
+                Validations.Add("Código da filial é requirido!");
+
+            if (Validations.Count > 0)
+                return false;
+            else
+                return true;
+
+        }
+
+
     }
-
-
 }

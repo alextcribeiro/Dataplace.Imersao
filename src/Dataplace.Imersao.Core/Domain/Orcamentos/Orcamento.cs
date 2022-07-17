@@ -45,7 +45,7 @@ namespace Dataplace.Imersao.Core.Domain.Orcamentos
 
         public void AdicionarItens(OrcamentoItem item)
         {
-           if (item == null) throw new Exception("O item é requerido");
+           if (item == null) throw new DomainException("O item é requerido");
            
             Itens.Add(item);
         }
@@ -86,6 +86,7 @@ namespace Dataplace.Imersao.Core.Domain.Orcamentos
 
         public List<string> Validations;
         public bool IsValid()
+
         {
             Validations = new List<string>();
 
