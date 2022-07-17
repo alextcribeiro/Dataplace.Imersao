@@ -33,7 +33,8 @@ namespace Dataplace.Imersao.Core.Domain.Orcamentos
         public decimal PercAltPreco { get; private set; }
         public decimal PrecoVenda { get; private set; }
         public decimal Total { get; private set; }
-        public OrcamentoItemStatusEnum OrcamentoItemStatusEnum { get; private set; }
+        //public OrcamentoItemStatusEnum OrcamentoItemStatusEnum { get; private set; }
+        public OrcamentoItemStatusEnum Situacao { get; private set; }
         //public string Situacao { get; private set; }
 
 

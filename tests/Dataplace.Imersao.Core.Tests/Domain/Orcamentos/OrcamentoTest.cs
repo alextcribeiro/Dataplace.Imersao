@@ -63,5 +63,23 @@ namespace Dataplace.Imersao.Core.Tests.Domain.Orcamentos
             // act & assert
             Assert.Throws<DomainException>(() => orcamento.FecharOrcamento());
         }
+
+        
+        [Fact]
+        public void ReabrirOrcamento()
+        {
+            // Arrange
+            var orcamento = _fixture.NovoOrcamento();
+
+
+            // Act
+            orcamento.ReabrirOrcamento();
+            
+
+            // Assert
+            Assert.Equal(Core.Domain.Orcamentos.Enums.OrcamentoStatusEnum.Aberto, orcamento.Situacao);
+           
+        }
+
     }
 }
