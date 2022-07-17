@@ -96,7 +96,7 @@ namespace Dataplace.Imersao.Core.Domain.Orcamentos
             if (string.IsNullOrEmpty(CdFilial))
                 Validations.Add("Código da filial é requirido!");
 
-            if (string.IsNullOrEmpty(Usuario.Codigo))
+            if (string.IsNullOrEmpty(Usuario.Nome))
                 Validations.Add("Usuário é requirido!");
 
             if (string.IsNullOrEmpty(Vendedor.Codigo))

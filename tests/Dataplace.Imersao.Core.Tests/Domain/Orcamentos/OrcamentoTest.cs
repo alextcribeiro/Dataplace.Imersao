@@ -28,8 +28,7 @@ namespace Dataplace.Imersao.Core.Tests.Domain.Orcamentos
             Assert.True(orcamento.CdFilial == _fixture.CdFilial);
             Assert.Equal(_fixture.NumOrcaemtp, orcamento.NumOrcamento);
             Assert.True(orcamento.Cliente.Codigo == _fixture.Cliente.Codigo);
-            Assert.True(orcamento.Usuario == _fixture.UserName);
-            Assert.True(orcamento.Usuario == _fixture.UserName);
+            Assert.Equal(_fixture.usuaria.Nome, orcamento.Usuario.Nome);
             Assert.True(orcamento.Situacao == Core.Domain.Orcamentos.Enums.OrcamentoStatusEnum.Aberto);
             Assert.Null(orcamento.Validade);
             Assert.NotNull(orcamento.TabelaPreco);

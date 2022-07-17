@@ -9,7 +9,7 @@ namespace Dataplace.Imersao.Core.Tests.Fixtures
         internal string CdFilial = "01";
         internal OrcamentoCliente Cliente = new OrcamentoCliente("CLI01");
         internal OrcamentoVendedor Vendedor = new OrcamentoVendedor("VDD01");
-        internal string UserName = "sym_usuario";
+        internal UsuarioDoOrcamento usuaria = new UsuarioDoOrcamento("sym_usuario");
         internal int NumOrcaemtp = 1000;
         internal OrcamentoTabelaPreco TavelaPreco = new OrcamentoTabelaPreco("2022", 1);
 
@@ -20,8 +20,8 @@ namespace Dataplace.Imersao.Core.Tests.Fixtures
                 CdEmpresa, 
                 CdFilial,
                 NumOrcaemtp,
-                Cliente, 
-                UserName,
+                Cliente,
+                usuaria,
                 Vendedor, 
                 TavelaPreco);
         }

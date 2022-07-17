@@ -8,10 +8,10 @@ namespace Dataplace.Imersao.Core.Domain.Orcamentos.ValueObjects
 {
     public class UsuarioDoOrcamento
     {
-        public UsuarioDoOrcamento()
+        public UsuarioDoOrcamento(string nome)
         {
-            Codigo = codigo;
+            Nome = nome;
         }
-        public string Codigo { get; private set; }
+        public string Nome { get; private set; }
     }
 }
