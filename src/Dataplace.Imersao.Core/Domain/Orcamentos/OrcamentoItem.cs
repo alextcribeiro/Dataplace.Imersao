@@ -1,4 +1,5 @@
-﻿using Dataplace.Imersao.Core.Domain.Orcamentos.ValueObjects;
+﻿using Dataplace.Imersao.Core.Domain.Orcamentos.Enums;
+using Dataplace.Imersao.Core.Domain.Orcamentos.ValueObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +22,7 @@ namespace Dataplace.Imersao.Core.Domain.Orcamentos
             AtrubuirPreco(preco);
 
         }
-
+        public OrcamentoItemPreco Preco { get; private set; }
         public int Seq { get; private set; }
         public string CdEmpresa { get; private set; }
         public string CdFilial { get; private set; }
@@ -32,7 +33,8 @@ namespace Dataplace.Imersao.Core.Domain.Orcamentos
         public decimal PercAltPreco { get; private set; }
         public decimal PrecoVenda { get; private set; }
         public decimal Total { get; private set; }
-        public string Situacao { get; private set; }
+        public OrcamentoItemStatusEnum OrcamentoItemStatusEnum { get; private set; }
+        //public string Situacao { get; private set; }
 
 
 
