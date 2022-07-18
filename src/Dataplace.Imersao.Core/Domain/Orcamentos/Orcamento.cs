@@ -46,7 +46,8 @@ namespace Dataplace.Imersao.Core.Domain.Orcamentos
         public void AdicionarItens(OrcamentoItem item)
         {
            if (item == null) throw new DomainException("O item é requerido");
-           
+
+                    
             Itens.Add(item);
         }
 
@@ -108,7 +109,9 @@ namespace Dataplace.Imersao.Core.Domain.Orcamentos
             if (string.IsNullOrEmpty(TabelaPreco.CdTabela))
                 Validations.Add("Tabela de preço é requirido!");
 
-            
+            if (NumOrcamento == null)
+                Validations.Add("Numero do Orçamento é requirido!");
+
             if (Validations.Count > 0)
                 return false;
             else

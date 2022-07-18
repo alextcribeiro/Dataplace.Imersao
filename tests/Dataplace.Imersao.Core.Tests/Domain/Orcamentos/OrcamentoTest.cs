@@ -81,5 +81,32 @@ namespace Dataplace.Imersao.Core.Tests.Domain.Orcamentos
            
         }
 
+        [Fact]
+        public void CancelarOrcamento()
+        {
+            // Arrange
+            var orcamento = _fixture.NovoOrcamento();
+
+
+            // Act
+            orcamento.CancerlarOrcamento();
+
+
+            // Assert
+            Assert.Equal(Core.Domain.Orcamentos.Enums.OrcamentoStatusEnum.cancelado, orcamento.Situacao);
+
+        }
+
+        [Fact]
+        public void TentarCancelarOrcamentoJaFechadoRetornarException()
+        {
+            // arrange
+            var orcamento = _fixture.NovoOrcamento();
+            orcamento.CancerlarOrcamento();
+
+            // act & assert
+            Assert.Throws<DomainException>(() => orcamento.CancerlarOrcamento());
+        }
+
     }
 }
