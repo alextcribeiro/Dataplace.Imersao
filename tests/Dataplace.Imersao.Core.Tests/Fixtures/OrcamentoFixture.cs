@@ -26,5 +26,7 @@ namespace Dataplace.Imersao.Core.Tests.Fixtures
                 TavelaPreco);
         }
 
+        
     }
+    
 }

@@ -12,7 +12,7 @@ namespace Dataplace.Imersao.Core.Domain.Orcamentos
     public class OrcamentoItem
     {
 
-        public OrcamentoItem(string cdEmpresa, string cdFilial, int numOrcamento, 
+        public OrcamentoItem(string cdEmpresa, string cdFilial, int numOrcamento,
             OrcamentoProduto produto, decimal quantidade, OrcamentoItemPreco preco)
         {
             CdEmpresa = cdEmpresa;
@@ -35,7 +35,7 @@ namespace Dataplace.Imersao.Core.Domain.Orcamentos
         public decimal PrecoVenda { get; private set; }
         public decimal Total { get; private set; }
         public OrcamentoItemStatusEnum Situacao { get; private set; }
-        
+
 
 
 
@@ -63,10 +63,10 @@ namespace Dataplace.Imersao.Core.Domain.Orcamentos
         public List<string> Validations;
 
         public bool IsValid()
-        
+
         {
             Validations = new List<string>();
-            
+
             if (string.IsNullOrEmpty(CdEmpresa))
                 Validations.Add("Código da empresa é requirido!");
 
@@ -79,7 +79,7 @@ namespace Dataplace.Imersao.Core.Domain.Orcamentos
             if (Produto == null)
                 Validations.Add("Produto é requirido!");
 
-            if (Quantidade == null)
+            if (Quantidade < 0)
                 Validations.Add("Quantidade é requirida!");
 
             if (Preco == null)
@@ -93,6 +93,17 @@ namespace Dataplace.Imersao.Core.Domain.Orcamentos
 
         }
 
+        public static class Factory
+        {
 
+            public static OrcamentoItem AdicionarItens(string cdEmpresa, string cdFilial, int numOrcamento,
+                                       OrcamentoProduto produto, decimal quantidade, OrcamentoItemPreco preco)
+            {
+                return new OrcamentoItem(cdEmpresa, cdFilial, numOrcamento, produto, quantidade, preco);
+            }
+
+
+
+        }
     }
 }

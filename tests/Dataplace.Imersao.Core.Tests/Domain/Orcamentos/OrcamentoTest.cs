@@ -97,16 +97,5 @@ namespace Dataplace.Imersao.Core.Tests.Domain.Orcamentos
 
         }
 
-        [Fact]
-        public void TentarCancelarOrcamentoJaFechadoRetornarException()
-        {
-            // arrange
-            var orcamento = _fixture.NovoOrcamento();
-            orcamento.CancerlarOrcamento();
-
-            // act & assert
-            Assert.Throws<DomainException>(() => orcamento.CancerlarOrcamento());
         }
-
-    }
 }

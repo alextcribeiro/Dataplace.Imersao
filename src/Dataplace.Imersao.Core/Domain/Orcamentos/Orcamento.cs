@@ -44,6 +44,8 @@ namespace Dataplace.Imersao.Core.Domain.Orcamentos
 
 
         public void AdicionarItens(OrcamentoItem item)
+
+
         {
            if (item == null) throw new DomainException("O item é requerido");
 
@@ -51,6 +53,8 @@ namespace Dataplace.Imersao.Core.Domain.Orcamentos
             Itens.Add(item);
         }
 
+
+        
         public void FecharOrcamento()
         {
             if (Situacao == OrcamentoStatusEnum.Fechado)
@@ -64,6 +68,9 @@ namespace Dataplace.Imersao.Core.Domain.Orcamentos
         {
             if (Situacao == OrcamentoStatusEnum.Fechado)
                 throw new DomainException("Orçamento já está Fechado!");
+
+            if (Situacao == OrcamentoStatusEnum.cancelado)
+                throw new DomainException("Orçamento já está Cancelado!");
 
             Situacao = OrcamentoStatusEnum.Aberto;
             DtFechamento = null;
@@ -109,7 +116,7 @@ namespace Dataplace.Imersao.Core.Domain.Orcamentos
             if (string.IsNullOrEmpty(TabelaPreco.CdTabela))
                 Validations.Add("Tabela de preço é requirido!");
 
-            if (NumOrcamento == null)
+            if (NumOrcamento <0)
                 Validations.Add("Numero do Orçamento é requirido!");
 
             if (Validations.Count > 0)
@@ -132,6 +139,9 @@ namespace Dataplace.Imersao.Core.Domain.Orcamentos
             {
                 return new Orcamento(cdEmpresa, cdFilial, numOrcamento, null, usuario, vendedor, tabelaPreco);
             }
+
+            
+
         }
 
         #endregion
